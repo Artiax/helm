@@ -18,7 +18,7 @@ spec:
       containers:
         - name: "{{ template "common.name" . }}"
           image: "{{ template "common.name" . }}:{{ .Values.deployment.imageTag }}"
-          imagePullPolicy: "{{ .Values.deployments.imagePullPolicy }}"
+          imagePullPolicy: "{{ .Values.deployment.imagePullPolicy }}"
 
           readinessProbe:
             httpGet:
