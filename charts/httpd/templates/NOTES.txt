@@ -1,0 +1,3 @@
+This is a test service...
+To access the newly deployed chart use:
+$ minikube service {{ template "common.fullname" . }}

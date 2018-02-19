@@ -1,0 +1,31 @@
+apiVersion: "apps/v1beta2"
+kind: "Deployment"
+metadata:
+  name: "{{ template "common.fullname" . }}"
+  labels:
+{{ include "common.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+{{ include "common.labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "common.labels" . | indent 8 }}
+
+    spec:
+      containers:
+        - name: "{{ template "common.name" . }}"
+          image: "{{ template "common.name" . }}:{{ .Values.deployment.imageTag }}"
+          imagePullPolicy: "{{ .Values.deployments.imagePullPolicy }}"
+
+          readinessProbe:
+            httpGet:
+              port: {{ .Values.deployment.port }}
+              path: "/index.html"
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          ports:
+            - containerPort: {{ .Values.deployment.port }}

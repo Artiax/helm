@@ -1,0 +1,7 @@
+service:
+  nodePort: 30081
+deployment:
+  replicas: 2
+  imageTag: "latest"
+  imagePullPolicy: "IfNotPresent"
+  port: 80

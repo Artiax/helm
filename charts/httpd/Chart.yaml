@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A test chart for httpd
+name: httpd
+version: 0.1.0
